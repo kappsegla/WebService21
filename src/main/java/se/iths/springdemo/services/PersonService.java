@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonService {
+public class PersonService implements se.iths.springdemo.services.Service {
 
     private final PersonMapper personMapper;
     private PersonRepsitory personRepsitory;
@@ -23,14 +23,17 @@ public class PersonService {
         this.personMapper = personMapper;
     }
 
+    @Override
     public List<PersonDto> getAllPersons() {
         return personMapper.mapp(personRepsitory.findAll());
     }
 
+    @Override
     public Optional<PersonDto> getOne(Long id) {
         return personMapper.mapp(personRepsitory.findById(id));
     }
 
+    @Override
     public PersonDto createPerson(PersonDto person) {
         if (person.getName().isEmpty())
             throw new RuntimeException();
@@ -39,10 +42,12 @@ public class PersonService {
         return personMapper.mapp(personRepsitory.save(personMapper.mapp(person)));
     }
 
+    @Override
     public void delete(Long id) {
         personRepsitory.deleteById(id);
     }
 
+    @Override
     public PersonDto replace(Long id, PersonDto personDto) {
         Optional<Person> person = personRepsitory.findById(id);
         if( person.isPresent())
@@ -57,6 +62,7 @@ public class PersonService {
                     "Id " + id + " not found.");
     }
 
+    @Override
     public PersonDto update(Long id, PersonEmail personEmail) {
         Optional<Person> person = personRepsitory.findById(id);
         if( person.isPresent())
