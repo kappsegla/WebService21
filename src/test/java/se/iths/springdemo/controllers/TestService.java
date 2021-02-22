@@ -10,7 +10,7 @@ import java.util.Optional;
 public class TestService implements Service {
     @Override
     public List<PersonDto> getAllPersons() {
-        return null;
+        return List.of(new PersonDto(1,"Test","Test"), new PersonDto(2,"Test2","Test2"));
     }
 
     @Override
