@@ -3,7 +3,7 @@ package se.iths.springdemo.controllers;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import se.iths.springdemo.services.PersonService;
+import se.iths.springdemo.configurations.TestConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +14,7 @@ class PersonControllerTest {
 
     @Test
     void callingOneWithValidIdReturnsOnePerson(){
-        PersonController personController = new PersonController(new TestService());
+        PersonController personController = new PersonController(new TestConfiguration(), new TestService());
 
         var person = personController.one(1L);
 
@@ -26,7 +26,7 @@ class PersonControllerTest {
 
     @Test
     void callingOneWithInvalidIdThrowsExceptionWithResponseStatus404(){
-        PersonController personController = new PersonController(new TestService());
+        PersonController personController = new PersonController(new TestConfiguration(), new TestService());
 
         var exception = assertThrows(ResponseStatusException.class, () -> personController.one(2L) );
         assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
