@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PersonControllerTest {
 
     //Unit tests. Testing one thing at a time, in isolation.
-
     @Test
     void callingOneWithValidIdReturnsOnePerson(){
         PersonController personController = new PersonController(new TestConfiguration(), new TestService());

@@ -37,7 +37,6 @@ public class PersonService implements se.iths.springdemo.services.Service {
     public PersonDto createPerson(PersonDto person) {
         if (person.getName().isEmpty())
             throw new RuntimeException();
-
         //Mapp from PersonDto to Person
         return personMapper.mapp(personRepsitory.save(personMapper.mapp(person)));
     }

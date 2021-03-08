@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PersonRepsitory extends JpaRepository<Person, Long> {
-    List<Person> findAllByName(String name);
+    List<Person> findAllByNameContains(String name);
 }
